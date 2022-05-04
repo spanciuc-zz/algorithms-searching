@@ -9,7 +9,7 @@ public class LinearSearch {
   private LinearSearch() {}
 
   public static <T, S extends T> OptionalInt search(T[] array, S obj) {
-    Objects.requireNonNull(obj);
+    Objects.requireNonNull(array);
     return IntStream.range(0, array.length)
         .filter(e -> Objects.equals(array[e], obj))
         .findFirst();
