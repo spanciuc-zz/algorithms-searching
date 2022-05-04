@@ -6,7 +6,11 @@
 
     <groupId>com.pantifik.algorithms.searching</groupId>
     <artifactId>searching</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>linear</module>
+    </modules>
 
     <properties>
         <java.version>17</java.version>
