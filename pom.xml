@@ -26,7 +26,7 @@
         <repository>
             <id>spanciuc-github</id>
             <name>GitHub spanciuc Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/spanciuc/algorithms-sorting
+            <url>https://maven.pkg.github.com/spanciuc/algorithms-searching
             </url>
         </repository>
     </distributionManagement>
