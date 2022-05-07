@@ -11,6 +11,7 @@
     <modules>
         <module>linear</module>
         <module>binary</module>
+        <module>jump</module>
     </modules>
 
     <properties>
