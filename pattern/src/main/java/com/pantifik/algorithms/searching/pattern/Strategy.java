@@ -1,5 +1,7 @@
 package com.pantifik.algorithms.searching.pattern;
 
+import com.pantifik.algorithms.searching.pattern.kmp.KmpPatternSearch;
+import com.pantifik.algorithms.searching.pattern.kmp.LongestPrefixSuffixImpl;
 import com.pantifik.algorithms.searching.pattern.naive.NaivePatternSearch;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +13,12 @@ public enum Strategy {
   /**
    * Uses nested for loops for pattern search.
    */
-  NAIVE(new NaivePatternSearch());
+  NAIVE(new NaivePatternSearch()),
+
+  /**
+   * Uses Knuth-Morris-Pratt Pattern Search.
+   */
+  KMP(new KmpPatternSearch(new LongestPrefixSuffixImpl()));
 
   private final PatternSearch patternSearch;
 

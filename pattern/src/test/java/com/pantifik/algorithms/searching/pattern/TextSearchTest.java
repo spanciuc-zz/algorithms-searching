@@ -21,6 +21,27 @@ class TextSearchTest {
   @Spy
   private TextSearch textSearch;
 
+  public static Stream<Arguments> searchProvider() {
+
+    List<Arguments> arguments = new ArrayList<>();
+
+    for (Strategy strategy : Strategy.values()) {
+      arguments.add(Arguments.of(strategy, List.of(), "", "some pattern"));
+      arguments.add(Arguments.of(strategy, List.of(), "some text", ""));
+      arguments.add(Arguments.of(strategy, List.of(), "", ""));
+      arguments.add(Arguments.of(strategy, List.of(), "text", "some text"));
+      arguments.add(Arguments.of(strategy, List.of(), "text", "test5"));
+      arguments.add(Arguments.of(strategy, List.of(), "text", "test"));
+      arguments.add(Arguments.of(strategy, List.of(0), "test", "test"));
+      arguments.add(Arguments.of(strategy, List.of(0, 10), "test text test", "test"));
+      arguments.add(Arguments.of(strategy, List.of(3, 16), "1241235658122768123", "123"));
+      arguments.add(Arguments.of(strategy, List.of(0, 1, 2, 3, 4, 5, 6, 7, 8), "aaaaaaaaaa", "aa"));
+    }
+
+    return arguments.stream();
+
+  }
+
   @Test
   void search_whenStrategyNotGiven_shouldUseDefaultStrategy() {
     List<Integer> expected = List.of(1, 2, 3, 4);
@@ -62,27 +83,6 @@ class TextSearchTest {
   void search_shouldReturnListOfFoundIndexes(Strategy strategy, List<Integer> expected, String text,
       String pattern) {
     assertEquals(expected, textSearch.search(text, pattern, strategy));
-  }
-
-  static Stream<Arguments> searchProvider() {
-
-    List<Arguments> arguments = new ArrayList<>();
-
-    for (Strategy strategy : Strategy.values()) {
-      arguments.add(Arguments.of(strategy, List.of(), "", "some pattern"));
-      arguments.add(Arguments.of(strategy, List.of(), "some text", ""));
-      arguments.add(Arguments.of(strategy, List.of(), "", ""));
-      arguments.add(Arguments.of(strategy, List.of(), "text", "some text"));
-      arguments.add(Arguments.of(strategy, List.of(), "text", "test5"));
-      arguments.add(Arguments.of(strategy, List.of(), "text", "test"));
-      arguments.add(Arguments.of(strategy, List.of(0), "test", "test"));
-      arguments.add(Arguments.of(strategy, List.of(0, 10), "test text test", "test"));
-      arguments.add(Arguments.of(strategy, List.of(3, 16), "1241235658122768123", "123"));
-      arguments.add(Arguments.of(strategy, List.of(0, 1, 2, 3, 4, 5, 6, 7, 8), "aaaaaaaaaa", "aa"));
-    }
-
-    return arguments.stream();
-
   }
 
 }
